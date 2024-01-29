@@ -23,18 +23,21 @@ export default async function RootLayout({
 
 
     return (
-        <div className='relative bg-slate-100'>
+        <div className='bg-slate-100'>
 
             <Navbar />
 
-            <div className="w-full flex justify-between mt-6">
+            <div className="w-full flex justify-between pt-6">
                 <div className="px-8 bgx-gray-900/10">
                     <SideNav />
                 </div>
 
 
-                <main className="mx-auto max-w-7xl w-full ml-4 text-slate-300 pr-2 xl:pr-0">
+                <main className="mx-auto max-w-7xl w-full xbg-red-100/80">
+                    <div className="mx-auto">
                     {children}
+
+                    </div>
                 </main>
             </div>
         </div>

@@ -36,44 +36,50 @@ export default function Overview() {
 
             </section>
 
-            <section className="flex flex-col xl:flex-row flex-wrap justify-between gap-4 md:gap-8 mt-8">
+            {/* <section className="flex flex-col xl:flex-row flex-wrap justify-between gap-4 md:gap-8 mt-8"> */}
+            <section className="flex flex-wrap -m-4 mx-auto">
+                <div className="xl:w-1/4 md:w-1/2 p-4">
+                    <SummaryCard
+                        title="Kullanicilar"
+                        data={"11"}
+                        icon={<Image src={GlassTickIcon} height={46} width={46} alt="icon" />}
+                        link={<Link href={'/dashboard/users'}>Kullanicilara git</Link>}
+                    />
+                </div>
 
-                <SummaryCard
-                    title="Kullanicilar"
-                    data={"11"}
-                    icon={<Image src={GlassTickIcon} height={46} width={46} alt="icon" />}
-                    link={<Link href={'/dashboard/users'}>Kullanicilara git</Link>}
-                />
+                <div className="xl:w-1/4 md:w-1/2 p-4">
+                    <SummaryCard
+                        title="Makaleler"
+                        data={"30"}
+                        icon={<Image src={GlassInfoIcon} height={46} width={46} alt="icon" />}
+                        link={<Link href={'/dashboard/users'}>Makalelere git</Link>}
+                    />
 
+                </div>
+                <div className="xl:w-1/4 md:w-1/2 p-4">
+                    <SummaryCard
+                        title="Ürünler"
+                        data={"84"}
+                        icon={<Image src={GlassPaperIcon} height={46} width={46} alt="icon" />}
+                        link={<Link href={'/dashboard/users'}>Ürünlere git</Link>}
+                    />
+                </div>
 
-                <SummaryCard
-                    title="Makaleler"
-                    data={"30"}
-                    icon={<Image src={GlassInfoIcon} height={46} width={46} alt="icon" />}
-                    link={<Link href={'/dashboard/users'}>Makalelere git</Link>}
-                />
+                <div className="xl:w-1/4 md:w-1/2 p-4">
 
+                    <SummaryCard
+                        title="Siparişler"
+                        data={"256"}
+                        icon={<Image src={GlassDiscountIcon} height={46} width={46} alt="icon" />}
+                        link={<Link href={'/dashboard/users'}>Siparişler git</Link>}
+                    />
+                </div>
 
+                {/* </section> */}
 
-                <SummaryCard
-                    title="Ürünler"
-                    data={"84"}
-                    icon={<Image src={GlassPaperIcon} height={46} width={46} alt="icon" />}
-                    link={<Link href={'/dashboard/users'}>Ürünlere git</Link>}
-                />
-
-                <SummaryCard
-                    title="Siparişler"
-                    data={"256"}
-                    icon={<Image src={GlassDiscountIcon} height={46} width={46} alt="icon" />}
-                    link={<Link href={'/dashboard/users'}>Siparişler git</Link>}
-                />
 
 
             </section>
-
-
-
-        </div>
+        </div >
     );
 }

@@ -8,8 +8,8 @@ import { getServerAuthSession } from "@/server/auth";
 
 
 export const metadata = {
-    title: "Uzmankirala",
-    description: "Hemen kayıt olarak projelerinizi yayınlamaya başlayın",
+    title: "Admin App",
+    description: "Next.js admin app",
     icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -56,7 +56,7 @@ export default async function RootLayout({
 
             </div>
             <div className="flex justify-center mt-4">
-                {/* <Image priority={true} width="125" height={0} src={'/logo/uzmankirala-logo-centered.svg'} alt="uzmankirala logo" /> */}
+                {/* <Image priority={true} width="125" height={0} src={''} alt="logo" /> */}
             </div>
             <main className="container relative justify-center grid">
                 {children}
