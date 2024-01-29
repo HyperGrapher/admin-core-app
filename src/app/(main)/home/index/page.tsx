@@ -4,6 +4,9 @@ import { getServerAuthSession } from "@/server/auth";
 import { type Metadata } from "next";
 import { api } from "@/trpc/server";
 import { redirect } from 'next/navigation'
+import Signout from "./temp_signout";
+
+
 
 export const metadata: Metadata = {
     title: "Admin | Home",
@@ -26,6 +29,7 @@ export default function Home() {
 
                 <h1 className="text-slate-500 text-lg font-bold">Home</h1>
 
+                <Signout />
             </section>
 
 

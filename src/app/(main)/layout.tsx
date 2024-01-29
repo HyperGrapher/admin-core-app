@@ -3,10 +3,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getServerSession } from "next-auth";
 import Link from 'next/link';
-// import Navbar from '../_components/Navbar';
 import { getServerAuthSession } from "@/server/auth";
-// import { Button } from '@/app/_components/ui/button';
-
+import { RedirectType, redirect } from 'next/navigation';
 
 
 
@@ -15,11 +13,12 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-    // email-pass girisinde child client complara gecmiyor
-    // ! cozum olarak email-password girisinde provider'daki 
-    // ! gibi ara sayfaya (auth/provider) yonlendir
-    const serverSession = await getServerAuthSession(); // * bu tum db user datasini sagliyor
-    // const serverSession = await getServerSession(); // ! TODO bu importu asla kullanma- eksik data
+
+    const serverSession = await getServerAuthSession();
+
+    // Session yok ise (main) altindaki tum route'lari login'e yonlendirir.
+    if (!serverSession?.user) redirect('/auth/login', RedirectType.replace)
+
 
     return (
         <>

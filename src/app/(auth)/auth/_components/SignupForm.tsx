@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/button"
 import {
@@ -15,10 +15,10 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Facebook, Loader, Mail, User, KeySquare as Key } from "lucide-react"
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { checkEmail } from './actions'
+import { checkEmailExist } from './actions'
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from "@/components/ui/use-toast"
@@ -32,6 +32,7 @@ const formSchema = z.object({
 
 })
 
+// https://dribbble.com/Hypergraph/collections/1831553-Login-Screens
 
 const SignupForm = () => {
 
@@ -53,11 +54,9 @@ const SignupForm = () => {
     async function onSubmit(values: z.infer<typeof formSchema>) {
 
         await new Promise((resolve) => setTimeout(resolve, 500)); // fake api delay
-        const resp = await checkEmail(values.email)
+        const { isEmailExist } = await checkEmailExist(values.email)
 
-        if (!resp?.success) {
-            console.log(resp)
-
+        if (isEmailExist) {
             toast({
                 variant: "destructive",
                 title: "Kayıt Hatasi!",
@@ -75,20 +74,18 @@ const SignupForm = () => {
                 username: values.username,
 
             }, {
-                async onSuccess(data, variables) {
+                async onSuccess(_data, variables) {
 
+                    // kullanici olusturuldu, giriş yap.
                     const { email, password } = variables
                     const signinResult = await signIn('credentials', {
                         redirect: false,
                         email: email,
                         password: password,
-                        callbackUrl: "/home/index"
                     })
 
-                    if (signinResult?.ok) {
+                    if (signinResult?.ok) return router.replace(`/home/index?reg=true`)
 
-                        if (data?.id) return router.replace(`/home/index?reg=true`)
-                    }
 
                 },
                 async onError(err) {
@@ -98,9 +95,6 @@ const SignupForm = () => {
                         title: "Kayıt Hatası!",
                         description: err.message,
                     })
-
-                    // await new Promise((resolve) => setTimeout(resolve, 2500));
-                    // router.replace('/auth/signup')
                 },
 
             })
@@ -109,7 +103,6 @@ const SignupForm = () => {
             console.error(error)
         }
 
-        // router.push(`/auth/setup?type=email`);  // ? give a type to catch in setup, use in providers too
 
     }
 
@@ -200,29 +193,8 @@ const SignupForm = () => {
                     </div>
                 </form>
             </Form>
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-backgroundx px-2 text-muted-foreground">
-                        Yada
-                    </span>
-                </div>
-            </div>
-            {/* <Button
-                className='text-blue-600 border-blue-600 dark:border-blue-400 dark:text-blue-400' variant="outline" type="button" disabled={isLoading}>
-                <Facebook className="mr-2 h-4 w-4" />
-                {" "}
-                Facebook
-            </Button>
-            <Button
-                onClick={() => signIn('discord', { callbackUrl: '/auth/setup?type=discord' })}
-                className='text-violet-600 border-violet-600' variant="outline" type="button" disabled={isLoading}>
-                <Twitch className="mr-2 h-4 w-4" />
-                {" "}
-                Discord
-            </Button> */}
+
+
 
         </div>
     )
