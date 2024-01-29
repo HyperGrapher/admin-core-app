@@ -82,6 +82,7 @@ const SignupForm = () => {
                         redirect: false,
                         email: email,
                         password: password,
+                        callbackUrl: "/dashboard"
                     })
 
                     if (signinResult?.ok) return router.replace(`/dashboard?reg=true`)

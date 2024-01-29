@@ -6,6 +6,7 @@ import { api } from "@/trpc/server";
 import { redirect } from 'next/navigation'
 import { Mail, PlusIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Users from "./_components/Users"
 
 // iconly-glass-tick.svg
 // iconly-glass-info.svg
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 // http://localhost:5005/dashboard
-export default function Users() {
+export default function UsersPage() {
 
     return (
         <div className="min-h-screen opacity-0 delayed-fade-in">
@@ -24,7 +25,7 @@ export default function Users() {
 
             <section
                 className={cn(
-                    "max-w-5xl w-full flex justify-between ",
+                    "max-w-5xl w-full flex items-center justify-between ",
                     "px-4 ",
                 )}>
                 <h1 className="text-slate-500 text-xl font-bold tracking-wider">Kullanıcılar</h1>
@@ -34,6 +35,10 @@ export default function Users() {
                 </Button>
 
             </section>
+
+            <div className="">
+                <Users />
+            </div>
 
 
 
