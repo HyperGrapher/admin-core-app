@@ -73,7 +73,7 @@ const LoginForm = () => {
             })
 
             if (signinResult?.ok) {
-                return router.replace(`/dashboard`)
+                return router.replace(`/dashboard/overview`)
             }
 
             setIsLoading(false)

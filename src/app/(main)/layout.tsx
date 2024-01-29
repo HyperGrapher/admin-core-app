@@ -33,7 +33,7 @@ export default async function RootLayout({
                 </div>
 
 
-                <main className="mx-auto w-full ml-4 text-slate-300 pr-2 xl:pr-0">
+                <main className="mx-auto max-w-7xl w-full ml-4 text-slate-300 pr-2 xl:pr-0">
                     {children}
                 </main>
             </div>

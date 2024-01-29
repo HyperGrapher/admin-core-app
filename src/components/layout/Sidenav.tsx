@@ -17,8 +17,8 @@ export default function SideNav() {
     return (
         <aside className={`flex flex-col gap-4 w-52 xbg-red-500/10 text-slate-500 text-sm tracking-wider`}>
 
-            <Link prefetch={false} href="/dashboard" >
-                <div className={`flex items-center gap-6 pl-4 py-3 rounded-lg ${path === '/dashboard' ? 'nav-active shadow-md font-medium' : null} `}>
+            <Link prefetch={false} href="/dashboard/overview" >
+                <div className={`flex items-center gap-6 pl-4 py-3 rounded-lg ${path === '/dashboard/overview' ? 'nav-active shadow-md font-medium' : null} `}>
                     <HiHome size={22} />
                     <span className='translate-y-0.5'>
                         Genel Durum

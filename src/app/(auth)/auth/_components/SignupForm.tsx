@@ -82,10 +82,10 @@ const SignupForm = () => {
                         redirect: false,
                         email: email,
                         password: password,
-                        callbackUrl: "/dashboard"
+                        callbackUrl: "/dashboard/overview"
                     })
 
-                    if (signinResult?.ok) return router.replace(`/dashboard?reg=true`)
+                    if (signinResult?.ok) return router.replace(`/dashboard/overview?reg=true`)
 
 
                 },
