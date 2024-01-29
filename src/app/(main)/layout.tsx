@@ -5,6 +5,8 @@ import { getServerSession } from "next-auth";
 import Link from 'next/link';
 import { getServerAuthSession } from "@/server/auth";
 import { RedirectType, redirect } from 'next/navigation';
+import Navbar from "@/components/layout/Navbar";
+import SideNav from "@/components/layout/Sidenav";
 
 
 
@@ -21,22 +23,21 @@ export default async function RootLayout({
 
 
     return (
-        <>
-            <div className='relative'>
+        <div className='relative bg-slate-100'>
 
-                <pre>
-                    {JSON.stringify(serverSession, null, 4)}
-                </pre>
+            <Navbar />
 
-
-
-                {/* <Navbar session={serverSession} /> */}
-                {/* <div className="container px-5 py-24 mx-auto flex flex-wrap sm:flex-nowrap"> */}
-                <div className="container w-screen max-w-7xl mx-auto px-6 xl:px-0">
-                    {children}
+            <div className="w-full flex justify-between mt-6">
+                <div className="px-8 bgx-gray-900/10">
+                    <SideNav />
                 </div>
+
+
+                <main className="mx-auto w-full ml-4 text-slate-300 pr-2 xl:pr-0">
+                    {children}
+                </main>
             </div>
-        </>
+        </div>
     )
 
 }

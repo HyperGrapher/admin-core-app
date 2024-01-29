@@ -78,3 +78,37 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+enum ProductStatus {
+    DRAFT
+    PUBLISHED
+}
+
+
+model Product {
+    id          String        @id @default(cuid())
+    sku         String        @unique
+    title       String
+    description String        @db.Text
+    image       String?
+    stock       Int
+    price       Int
+    status      ProductStatus
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+    category    Category?     @relation(fields: [categoryId], references: [id])
+    categoryId  Int?
+
+    @@unique([id, sku])
+    @@index([categoryId])
+}
+
+model Category {
+    id      Int       @id @default(autoincrement())
+    name    String
+    product Product[]
+
+    @@unique([id])
+    @@map("category")
+}
+

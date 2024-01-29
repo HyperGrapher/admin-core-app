@@ -84,7 +84,7 @@ const SignupForm = () => {
                         password: password,
                     })
 
-                    if (signinResult?.ok) return router.replace(`/home/index?reg=true`)
+                    if (signinResult?.ok) return router.replace(`/dashboard?reg=true`)
 
 
                 },

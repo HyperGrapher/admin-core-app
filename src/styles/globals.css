@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.nav-active {
+    background: linear-gradient(90deg, rgb(8, 66, 226) 0%, rgb(11, 104, 243) 100%);
+    /* filter: brightness(0.9); */
+    font-weight: 700;
+    color: white;
+    transition: all 0.25s ease-in-out;
+  
+  }
+  
+  
+  @keyframes flash {
+    0% {
+      background-color: var(--content-area-card-bg);
+      opacity: 1;
+    }
+  
+    50% {
+      background-color: rgb(218, 246, 255);
+    }
+  
+    100% {
+      background-color: var(--content-area-card-bg);
+    }
+  }
+  
+  .delayed-fade-in {
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 350ms;
+  }
+  
+  .fade-in {
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

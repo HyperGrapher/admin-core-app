@@ -18,9 +18,9 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-    const serverSession = await getServerAuthSession(); // * her zaman bunu kullan
+    const serverSession = await getServerAuthSession();
 
-    if (serverSession?.user.id) redirect('/home/index', RedirectType.replace)
+    if (serverSession?.user.id) redirect('/dashboard', RedirectType.replace)
 
     return (
         <div className='relative w-full'>
