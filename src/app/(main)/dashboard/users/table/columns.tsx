@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { numberWithCommas, formatDateFromDatabaseWithHour, cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge"
+import { ModalActionStatus } from '../_components/ModalActionStatus';
 
 export const columns: ColumnDef<User>[] = [
 
@@ -86,6 +87,22 @@ export const columns: ColumnDef<User>[] = [
     cell: (props) => {
       const val = props.getValue() as Date
       return <span className='text-xs text-slate-500'>{formatDateFromDatabaseWithHour(val)}</span>
+    }
+  },
+  {
+    header: "Actions",
+    cell: ({ row }) => {
+
+      const active = row.original.active
+      const userId = String(row.original.id)
+
+      return (
+        <div className=''>
+          <ModalActionStatus userId={userId} />
+        </div>
+      )
+
+
     }
   },
 

@@ -17,6 +17,18 @@ import Link from "next/link";
 // iconly-glass-info.svg
 // iconly-glass-paper.svg
 
+/**
+ * https://youtu.be/fq7k_gVV5x8?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
+ * 
+ * https://www.youtube.com/watch?v=0cPCMIuDk2I&list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g&index=11
+ * https://youtu.be/GSgX60KBjTU?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
+ * https://youtu.be/fq7k_gVV5x8?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
+ * 
+ * # i18n
+ * https://youtu.be/pKolfZFW3gs
+ * 
+ */
+
 export const metadata: Metadata = {
     title: "Admin | Home",
 }
@@ -37,7 +49,7 @@ export default function Overview() {
             </section>
 
             {/* <section className="flex flex-col xl:flex-row flex-wrap justify-between gap-4 md:gap-8 mt-8"> */}
-            <section className="flex flex-wrap -m-4 mx-auto">
+            <section className="flex flex-wrap mt-6 mx-auto">
                 <div className="xl:w-1/4 md:w-1/2 p-4">
                     <SummaryCard
                         title="Kullanicilar"

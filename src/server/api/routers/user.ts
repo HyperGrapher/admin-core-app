@@ -7,22 +7,31 @@ import {
 } from "@/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
-  create: protectedProcedure
+  toggleUserStatus: protectedProcedure
     .input(
       z.object({
-        title: z.string().min(1),
-        text: z.string().min(1),
+        userId: z.string().min(1),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      return ctx.db.post.create({
+     const user = await ctx.db.user.findUnique({
+        where: {
+          id: input.userId,
+        },
+        select: {
+          active: true
+        }
+      });
+
+      return ctx.db.user.update({
+        where: {
+          id: input.userId
+        },
         data: {
-          title: input.title,
-          text: input.text,
-          user: { connect: { id: ctx.session.user.id } },
+          active: !user?.active
         },
       });
     }),
@@ -33,7 +42,17 @@ export const userRouter = createTRPCRouter({
     });
   }),
 
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  getUserDetail: protectedProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.user.findUnique({
+        where: {
+          id: input.userId,
+        },
+      });
+    }),
 });
