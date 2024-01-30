@@ -19,14 +19,18 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
+  params: {locale}
+
 }: {
   children: React.ReactNode;
+  params: {locale: string};
+
 }) {
 
   const session = await getServerSession();
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider session={session} headers={headers()}>{children}</TRPCReactProvider>
         <Toaster />
@@ -34,3 +38,4 @@ export default async function RootLayout({
     </html>
   );
 }
+

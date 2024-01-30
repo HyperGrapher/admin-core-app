@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { getServerAuthSession } from "@/server/auth";
 import { type Metadata } from "next";
 import { api } from "@/trpc/server";
-import { redirect } from 'next/navigation'
+import { redirect } from '@/navigation';
 import SummaryCard from "@/components/cards/SummaryCard";
 import Image from "next/image";
 import GlassTickIcon from "@/images/iconly-glass-tick.svg"
@@ -12,6 +12,8 @@ import GlassInfoIcon from "@/images/iconly-glass-info.svg"
 import GlassPaperIcon from "@/images/iconly-glass-paper.svg"
 import GlassDiscountIcon from "@/images/iconly-glass-discount.svg"
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
+
 
 // iconly-glass-tick.svg
 // iconly-glass-info.svg
@@ -36,6 +38,9 @@ export const metadata: Metadata = {
 // http://localhost:5005/dashboard
 export default function Overview() {
 
+    const t = useTranslations('overview');
+
+
     return (
         <div className="min-h-screen opacity-0 delayed-fade-in">
 
@@ -44,7 +49,9 @@ export default function Overview() {
                     "max-w-5xl w-full flex justify-between ",
                     "px-4 ",
                 )}>
-                <h1 className="text-slate-500 text-xl font-bold tracking-wider"> Genel Durum</h1>
+                <h1 className="text-slate-500 text-xl font-bold tracking-wider">
+                    {t('title')}
+                </h1>
 
             </section>
 

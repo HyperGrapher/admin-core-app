@@ -1,0 +1,10 @@
+{
+    "overview": {
+        "title": "Genel Durum"
+    },
+    "navigation": {
+        "overview": "Genel Durum",
+        "users": "Kullanıcılar",
+        "notifications": "Bildirimler"
+    }
+}

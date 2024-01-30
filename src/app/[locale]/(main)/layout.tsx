@@ -4,7 +4,9 @@ import { cn } from "@/lib/utils";
 import { getServerSession } from "next-auth";
 import Link from 'next/link';
 import { getServerAuthSession } from "@/server/auth";
-import { RedirectType, redirect } from 'next/navigation';
+import { RedirectType } from 'next/navigation';
+import { redirect } from '@/navigation';
+
 import Navbar from "@/components/layout/Navbar";
 import SideNav from "@/components/layout/Sidenav";
 

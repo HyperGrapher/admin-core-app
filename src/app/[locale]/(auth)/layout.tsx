@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { RedirectType, redirect } from 'next/navigation';
+import { RedirectType } from 'next/navigation';
+import { redirect } from '@/navigation';
 import { getServerAuthSession } from "@/server/auth";
 
 
@@ -20,7 +21,7 @@ export default async function RootLayout({
 }) {
     const serverSession = await getServerAuthSession();
 
-    if (serverSession?.user.id) redirect('/dashboard', RedirectType.replace)
+    if (serverSession?.user.id) redirect('/dashboard/overview', RedirectType.replace)
 
     return (
         <div className='relative w-full'>

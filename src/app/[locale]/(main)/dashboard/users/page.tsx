@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { getServerAuthSession } from "@/server/auth";
 import { type Metadata } from "next";
 import { api } from "@/trpc/server";
-import { redirect } from 'next/navigation'
+import { redirect } from '@/navigation';
 import { Mail, PlusIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Users from "./_components/Users"

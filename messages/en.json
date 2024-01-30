@@ -1,0 +1,10 @@
+{
+    "overview": {
+        "title": "Overview"
+    },
+    "navigation": {
+        "overview": "Overview",
+        "users": "Users",
+        "notifications": "Notifications"
+    }
+}

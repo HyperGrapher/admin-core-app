@@ -20,7 +20,8 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { checkEmailExist } from './actions'
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import { useToast } from "@/components/ui/use-toast"
 import { api } from '@/trpc/react';
 

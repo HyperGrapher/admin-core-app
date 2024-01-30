@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from '@/navigation';
 import { useState } from "react";
 
 import { api } from "@/trpc/react";
@@ -20,7 +20,6 @@ export function CreatePost() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        createPost.mutate({ name });
       }}
       className="flex flex-col gap-2"
     >
