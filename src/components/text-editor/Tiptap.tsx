@@ -1,19 +1,19 @@
 "use client"
 
-import { useEditor, EditorContent } from '@tiptap/react';
-import TiptapKit from '@tiptap/starter-kit';
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import { common, createLowlight, } from 'lowlight'
-import latex from 'highlight.js/lib/languages/latex';
-import js from 'highlight.js/lib/languages/javascript';
-import ts from 'highlight.js/lib/languages/typescript';
-import Paragraph from '@tiptap/extension-paragraph'
-import Heading from '@tiptap/extension-heading'
-import BulletList from '@tiptap/extension-bullet-list'
-import OrderedList from '@tiptap/extension-ordered-list'
-import Text from '@tiptap/extension-text'
-import Document from '@tiptap/extension-document'
 import { cn } from '@/lib/utils';
+import BulletList from '@tiptap/extension-bullet-list';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import Document from '@tiptap/extension-document';
+import Heading from '@tiptap/extension-heading';
+import OrderedList from '@tiptap/extension-ordered-list';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+import { EditorContent, useEditor } from '@tiptap/react';
+import TiptapKit from '@tiptap/starter-kit';
+import js from 'highlight.js/lib/languages/javascript';
+import latex from 'highlight.js/lib/languages/latex';
+import ts from 'highlight.js/lib/languages/typescript';
+import { common, createLowlight, } from 'lowlight';
 import DefaultToolbar from './DefaultToolbar';
 
 // https://github.com/wooorm/lowlight
@@ -22,6 +22,14 @@ import DefaultToolbar from './DefaultToolbar';
 // ! https://youtu.be/ml4USMIm594
 // ! https://tiptap.dev/docs/editor/api/nodes/code-block-lowlight
 // ! https://github.com/wooorm/lowlight
+
+/* 
+EDITORS:
+
+https://www.reddit.com/r/vuejs/comments/v38mhv/tinymce_vs_tiptap_vs_ckeditor_for_freelancing/
+https://www.reddit.com/r/reactjs/comments/107xplc/any_good_libraries_for_rich_text_editors_out_there/
+https://www.reddit.com/r/reactjs/comments/14s4mmh/which_rich_text_editor_to_use/
+*/
 
 
 const lowlight = createLowlight(common);

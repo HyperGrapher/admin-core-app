@@ -16,10 +16,6 @@ import {
 import { Input } from "@/components/ui/input"
 import Tiptap from "@/components/text-editor/Tiptap"
 
-// Creating a Text Editor using React Quill
-// https://youtu.be/I3JQNq7Cbt0
-// https://www.npmjs.com/package/react-quill
-
 
 const formSchema = z.object({
     content: z.string().min(1, {
