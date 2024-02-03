@@ -11,13 +11,11 @@ const Users = () => {
 
     const [status, setStatus] = useState(true)
 
-    const { data: users, isFetching } = api.user.getUsers.useQuery(/* { active: status  } */);
+    const { data: users, isFetching } = api.user.getUsers.useQuery();
 
     return (
         <div className="py-10 max-w-5xl w-full">
-            <pre>
-                {/* {JSON.stringify(users, null, 4 )} */}
-            </pre>
+          
             {users && <DataTable columns={columns} data={users} visibility={{}} />}
         </div>
 

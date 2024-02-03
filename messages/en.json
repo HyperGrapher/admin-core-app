@@ -13,7 +13,16 @@
     "navigation": {
         "overview": "Overview",
         "users": "Users",
-        "notifications": "Notifications"
+        "posts": "Posts"
+    },
+    "post-page": {
+        "title": "Posts",
+        "new": "New Post"
+       
+    },
+    "user-page": {
+        "title": "Users"
+       
     },
     "auth": {
         "signin": "Sign In",

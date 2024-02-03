@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import Image from 'next/image';
 import { buttonVariants } from "@/components/ui/button";
+import { appRoutes } from '@/lib/constants';
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { RedirectType } from 'next/navigation';
 import { redirect } from '@/navigation';
 import { getServerAuthSession } from "@/server/auth";
+import Link from "next/link";
+import { RedirectType } from 'next/navigation';
 
 
 export const metadata = {
@@ -21,7 +21,8 @@ export default async function RootLayout({
 }) {
     const serverSession = await getServerAuthSession();
 
-    if (serverSession?.user.id) redirect('/dashboard/overview', RedirectType.replace)
+    // eger kullanici "logged in" ise dashboard'a yonlendirir. 
+    if (serverSession?.user.id) redirect(appRoutes.overview, RedirectType.replace)
 
     return (
         <div className='relative w-full'>

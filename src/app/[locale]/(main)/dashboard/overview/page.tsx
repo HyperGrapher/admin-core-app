@@ -13,11 +13,8 @@ import GlassPaperIcon from "@/images/iconly-glass-paper.svg"
 import GlassDiscountIcon from "@/images/iconly-glass-discount.svg"
 import { Link } from "@/navigation";
 import { useTranslations } from 'next-intl';
+import { appRoutes } from "@/lib/constants";
 
-
-// iconly-glass-tick.svg
-// iconly-glass-info.svg
-// iconly-glass-paper.svg
 
 /**
  * https://youtu.be/fq7k_gVV5x8?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
@@ -57,14 +54,13 @@ export default function Overview() {
 
             </section>
 
-            {/* <section className="flex flex-col xl:flex-row flex-wrap justify-between gap-4 md:gap-8 mt-8"> */}
             <section className="flex flex-wrap mt-6 mx-auto">
                 <div className="xl:w-1/4 md:w-1/2 p-4">
                     <SummaryCard
                         title={ov('sc_users_title')}
                         data={"11"}
                         icon={<Image src={GlassTickIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>{ov('sc_users_nav')}</Link>}
+                        link={<Link href={appRoutes.users}>{ov('sc_users_nav')}</Link>}
                     />
                 </div>
 
@@ -73,7 +69,7 @@ export default function Overview() {
                         title={ov('sc_posts_title')}
                         data={"30"}
                         icon={<Image src={GlassInfoIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>{ov('sc_posts_nav')}</Link>}
+                        link={<Link href={appRoutes.posts}>{ov('sc_posts_nav')}</Link>}
                     />
 
                 </div>
@@ -82,7 +78,7 @@ export default function Overview() {
                         title={ov('sc_products_title')}
                         data={"84"}
                         icon={<Image src={GlassPaperIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>{ov('sc_products_nav')}</Link>}
+                        link={<Link href={appRoutes.users}>{ov('sc_products_nav')}</Link>}
                     />
                 </div>
 
@@ -92,13 +88,9 @@ export default function Overview() {
                         title={ov('sc_orders_title')}
                         data={"256"}
                         icon={<Image src={GlassDiscountIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>{ov('sc_orders_nav')}</Link>}
+                        link={<Link href={appRoutes.posts}>{ov('sc_orders_nav')}</Link>}
                     />
                 </div>
-
-                {/* </section> */}
-
-
 
             </section>
         </div >

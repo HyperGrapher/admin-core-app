@@ -7,10 +7,11 @@ import { redirect } from '@/navigation';
 import { Mail, PlusIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Users from "./_components/Users"
+import PageHeader from "@/components/layout/PageHeader";
+import { Link } from "@/navigation";
+import { useTranslations } from 'next-intl';
+import { LinkButton } from "@/components/ui/link-button";
 
-// iconly-glass-tick.svg
-// iconly-glass-info.svg
-// iconly-glass-paper.svg
 
 export const metadata: Metadata = {
     title: "Admin | Home",
@@ -19,22 +20,16 @@ export const metadata: Metadata = {
 // http://localhost:5005/dashboard
 export default function UsersPage() {
 
+    const translation = useTranslations('user-page');
+
+
     return (
         <div className="min-h-screen opacity-0 delayed-fade-in">
 
 
-            <section
-                className={cn(
-                    "max-w-5xl w-full flex items-center justify-between ",
-                    "px-4 ",
-                )}>
-                <h1 className="text-slate-500 text-xl font-bold tracking-wider">Kullanıcılar</h1>
 
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                    <PlusIcon className="mr-2 h-4 w-4" /> Yeni
-                </Button>
+            <PageHeader title={translation("title")} />
 
-            </section>
 
             <div className="">
                 <Users />

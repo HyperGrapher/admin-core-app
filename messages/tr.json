@@ -10,10 +10,17 @@
         "sc_orders_title": "Siparişler",
         "sc_orders_nav": "Tüm siparişleri gör"
     },
+    "post-page": {
+        "title": "Makaleler",
+        "new": "Makale Ekle"
+    },
+    "user-page": {
+        "title": "Kullanicilar"
+    },
     "navigation": {
         "overview": "Genel Durum",
         "users": "Kullanıcılar",
-        "notifications": "Bildirimler"
+        "posts": "Makaleler"
     },
     "auth": {
         "signin": "Giriş Yap",
