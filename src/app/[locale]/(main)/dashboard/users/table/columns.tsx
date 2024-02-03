@@ -22,6 +22,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { numberWithCommas, formatDateFromDatabaseWithHour, cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge"
 import { ModalActionStatus } from '../_components/ModalActionStatus';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { PiCreditCard } from "react-icons/pi";
 
 export const columns: ColumnDef<User>[] = [
 
@@ -77,8 +88,7 @@ export const columns: ColumnDef<User>[] = [
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Tarih
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -99,6 +109,15 @@ export const columns: ColumnDef<User>[] = [
       return (
         <div className=''>
           <ModalActionStatus userId={userId} />
+          <Drawer>
+            <DrawerTrigger>
+              <Button size={'sm'} className='' variant={'ghost'} title="Kullanici statusunu degistir">
+                <PiCreditCard className="h-5 w-5 text-blue-500" />
+              </Button>
+            </DrawerTrigger>
+            <Content id={userId} />
+          </Drawer>
+
         </div>
       )
 
@@ -108,3 +127,24 @@ export const columns: ColumnDef<User>[] = [
 
 
 ]
+
+
+const Content = ({ id }: { id: string }) => {
+  return (
+    <div>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+          <DrawerDescription>User ID: {id}</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button>Submit</Button>
+          <DrawerClose>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </div>
+  )
+}
+

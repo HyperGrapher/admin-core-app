@@ -11,7 +11,7 @@ import GlassTickIcon from "@/images/iconly-glass-tick.svg"
 import GlassInfoIcon from "@/images/iconly-glass-info.svg"
 import GlassPaperIcon from "@/images/iconly-glass-paper.svg"
 import GlassDiscountIcon from "@/images/iconly-glass-discount.svg"
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { useTranslations } from 'next-intl';
 
 
@@ -28,7 +28,9 @@ import { useTranslations } from 'next-intl';
  * 
  * # i18n
  * https://youtu.be/pKolfZFW3gs
- * 
+ * https://next-intl-docs.vercel.app/docs/routing/navigation
+ * https://next-intl-docs.vercel.app/docs/environments/server-client-components#missing-context
+ * https://next-intl-docs.vercel.app/docs/environments/server-client-components#option-1-passing-translations-to-client-components
  */
 
 export const metadata: Metadata = {
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
 // http://localhost:5005/dashboard
 export default function Overview() {
 
-    const t = useTranslations('overview');
+    const ov = useTranslations('overview');
 
 
     return (
@@ -50,7 +52,7 @@ export default function Overview() {
                     "px-4 ",
                 )}>
                 <h1 className="text-slate-500 text-xl font-bold tracking-wider">
-                    {t('title')}
+                    {ov('title')}
                 </h1>
 
             </section>
@@ -59,38 +61,38 @@ export default function Overview() {
             <section className="flex flex-wrap mt-6 mx-auto">
                 <div className="xl:w-1/4 md:w-1/2 p-4">
                     <SummaryCard
-                        title="Kullanicilar"
+                        title={ov('sc_users_title')}
                         data={"11"}
                         icon={<Image src={GlassTickIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>Kullanicilara git</Link>}
+                        link={<Link href={'/dashboard/users'}>{ov('sc_users_nav')}</Link>}
                     />
                 </div>
 
                 <div className="xl:w-1/4 md:w-1/2 p-4">
                     <SummaryCard
-                        title="Makaleler"
+                        title={ov('sc_posts_title')}
                         data={"30"}
                         icon={<Image src={GlassInfoIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>Makalelere git</Link>}
+                        link={<Link href={'/dashboard/users'}>{ov('sc_posts_nav')}</Link>}
                     />
 
                 </div>
                 <div className="xl:w-1/4 md:w-1/2 p-4">
                     <SummaryCard
-                        title="Ürünler"
+                        title={ov('sc_products_title')}
                         data={"84"}
                         icon={<Image src={GlassPaperIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>Ürünlere git</Link>}
+                        link={<Link href={'/dashboard/users'}>{ov('sc_products_nav')}</Link>}
                     />
                 </div>
 
                 <div className="xl:w-1/4 md:w-1/2 p-4">
 
                     <SummaryCard
-                        title="Siparişler"
+                        title={ov('sc_orders_title')}
                         data={"256"}
                         icon={<Image src={GlassDiscountIcon} height={46} width={46} alt="icon" />}
-                        link={<Link href={'/dashboard/users'}>Siparişler git</Link>}
+                        link={<Link href={'/dashboard/users'}>{ov('sc_orders_nav')}</Link>}
                     />
                 </div>
 

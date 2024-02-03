@@ -1,10 +1,23 @@
 {
     "overview": {
-        "title": "Genel Durum"
+        "title": "Genel Durum",
+        "sc_users_title": "Kullanıcılar",
+        "sc_users_nav": "Tüm kullanıcıları gör",
+        "sc_posts_title": "Makaleler",
+        "sc_posts_nav": "Tüm makaleleri gör",
+        "sc_products_title": "Ürünler",
+        "sc_products_nav": "Tüm ürünler gör",
+        "sc_orders_title": "Siparişler",
+        "sc_orders_nav": "Tüm siparişleri gör"
     },
     "navigation": {
         "overview": "Genel Durum",
         "users": "Kullanıcılar",
         "notifications": "Bildirimler"
+    },
+    "auth": {
+        "signin": "Giriş Yap",
+        "signout": "Çıkış Yap",
+        "register": "Kayıt Ol"
     }
 }

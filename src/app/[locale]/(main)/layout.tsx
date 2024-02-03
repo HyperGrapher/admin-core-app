@@ -9,6 +9,7 @@ import { redirect } from '@/navigation';
 
 import Navbar from "@/components/layout/Navbar";
 import SideNav from "@/components/layout/Sidenav";
+import { getTranslations } from 'next-intl/server';
 
 
 
@@ -19,6 +20,8 @@ export default async function RootLayout({
 }) {
 
     const serverSession = await getServerAuthSession();
+    const nav = await getTranslations('navigation');
+
 
     // Session yok ise (main) altindaki tum route'lari login'e yonlendirir.
     if (!serverSession?.user) redirect('/auth/login', RedirectType.replace)
@@ -28,16 +31,21 @@ export default async function RootLayout({
         <div className='bg-slate-100'>
 
             <Navbar />
-
             <div className="w-full flex justify-between pt-6">
                 <div className="px-8 bgx-gray-900/10">
-                    <SideNav />
+                    <SideNav
+                        overview={nav('overview')}
+                        users={nav('users')}
+                        notifications={nav('notifications')}
+
+                    />
                 </div>
 
 
                 <main className="mx-auto max-w-7xl w-full xbg-red-100/80">
+
                     <div className="mx-auto">
-                    {children}
+                        {children}
 
                     </div>
                 </main>

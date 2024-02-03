@@ -1,10 +1,23 @@
 {
     "overview": {
-        "title": "Overview"
+        "title": "Overview",
+        "sc_users_title": "Users",
+        "sc_users_nav": "See all users",
+        "sc_posts_title": "Posts",
+        "sc_posts_nav": "See all posts",
+        "sc_products_title": "Products",
+        "sc_products_nav": "See all products",
+        "sc_orders_title": "Orders",
+        "sc_orders_nav": "See all orders"
     },
     "navigation": {
         "overview": "Overview",
         "users": "Users",
         "notifications": "Notifications"
+    },
+    "auth": {
+        "signin": "Sign In",
+        "signout": "Sign Out",
+        "register": "Sign Up"
     }
 }

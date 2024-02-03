@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+// https://youtu.be/NN5tysmkPF4
 import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 

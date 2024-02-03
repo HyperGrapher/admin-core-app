@@ -1,21 +1,33 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client"
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { signOut, useSession } from "next-auth/react";
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { HiPlus, HiEnvelope } from "react-icons/hi2";
-
+import {
+    getTranslations,
+    getFormatter,
+    getNow,
+    getTimeZone,
+    getMessages,
+    getLocale,
+} from 'next-intl/server';
+import { useLocale, useMessages } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/navigation';
 import { api } from "@/trpc/react";
-
+import { useState, useEffect } from "react";
+import FlagTr from '@/images/flag-tr.svg'
+import FlagEn from '@/images/flag-en.svg'
 // import { useRouter, usePathname } from 'next/navigation'
 // import { getServerSession, type NextAuthOptions, type DefaultSession } from "next-auth";
 
 const Navbar = () => {
 
 
-
+    const locale = useLocale();
+    const router = useRouter();
+    const path = usePathname();
 
     const { data: session } = useSession();
 
@@ -24,37 +36,16 @@ const Navbar = () => {
             <div className="relative flex place-items-center ">
 
                 <Link href='/' prefetch={false} className="font-bold text-lg text-slate-600">
-                    {/* <Image
-                        className="logo"
-                        width={150}
-                        height={35}
-                        src={'/uk-logo.png'}
-                        alt="logo"
-                    /> */}
-                    LOGO
+                    LOGO ({locale})
                 </Link>
 
             </div>
 
             <div className="ml-auto mr-8 space-x-4">
 
-
-
-                {/* <Button
-                    onClick={sendTestEmail}
-                    size={'sm'}
-                    className='mt-1'
-                    variant={'destructive'}
-                >
-                    <HiEnvelope className="mr-2 h-3 w-3" />
-                    Test Email
-                </Button> */}
-
-
-
             </div>
 
-            <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-4 text-xs opacity-0 delayed-fade-in">
 
                 <Image
                     className="logo rounded-xl border bottom-4 border-gray-300"
@@ -73,6 +64,23 @@ const Navbar = () => {
 
                 </div>
             </div>
+
+            <Button
+                onClick={() => {
+                    router.replace(path, { locale: locale === "tr" ? "en" : "tr" })
+                }}
+                size={'sm'}
+                className='mt-1 ml-8'
+                variant={'ghost'}
+            >
+
+
+                <Image src={locale === "tr" ? FlagTr : FlagEn} height={48} width={32} alt="tr-flag" />
+
+
+                {/* <HiEnvelope className="mr-2 h-3 w-3" /> */}
+                {/* {locale} */}
+            </Button>
         </header>
     )
 }
