@@ -6,34 +6,17 @@
 
 .nav-active {
   background: linear-gradient(90deg, rgb(8, 66, 226) 0%, rgb(11, 104, 243) 100%);
-  /* filter: brightness(0.9); */
   font-weight: 700;
   color: white;
   transition: all 0.25s ease-in-out;
 
 }
 
-
-@keyframes flash {
-  0% {
-    background-color: var(--content-area-card-bg);
-    opacity: 1;
-  }
-
-  50% {
-    background-color: rgb(218, 246, 255);
-  }
-
-  100% {
-    background-color: var(--content-area-card-bg);
-  }
-}
-
 .delayed-fade-in {
   animation: fadeInAnimation ease 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-delay: 350ms;
+  animation-delay: 350ms; /* delay  */
 }
 
 .fade-in {
@@ -53,7 +36,6 @@
 }
 
 .tiptap>*+* {
-
   margin-top: 0.75em;
 }
 
@@ -73,7 +55,7 @@ pre>code {
   padding: 0;
 
 }
-
+/* code highlight stilleri */
 .hljs-comment,
 .hljs-quote {
   color: #616161;

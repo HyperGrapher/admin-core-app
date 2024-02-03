@@ -1,7 +1,7 @@
 "use client"
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import TiptapKit from '@tiptap/starter-kit';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { common, createLowlight, } from 'lowlight'
 import latex from 'highlight.js/lib/languages/latex';
@@ -23,13 +23,12 @@ import DefaultToolbar from './DefaultToolbar';
 // ! https://tiptap.dev/docs/editor/api/nodes/code-block-lowlight
 // ! https://github.com/wooorm/lowlight
 
-// const tree = lowlight.highlight('js', '"use strict";')
 
 const lowlight = createLowlight(common);
 lowlight.register({ latex })
 lowlight.register({ js })
 lowlight.register({ ts })
-lowlight.highlightAuto("js")
+// const tree = lowlight.highlight('js', '"use strict";')
 
 const Tiptap = ({ content, onChange }: { content: string, onChange: (richText: string) => void }) => {
 
@@ -39,7 +38,7 @@ const Tiptap = ({ content, onChange }: { content: string, onChange: (richText: s
             Document,
             Paragraph,
             Text,
-            StarterKit.configure(),
+            TiptapKit.configure(),
             CodeBlockLowlight.configure({
                 lowlight,
             }),

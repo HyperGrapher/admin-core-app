@@ -23,7 +23,7 @@ import Tiptap from "@/components/text-editor/Tiptap"
 
 const formSchema = z.object({
     content: z.string().min(1, {
-        message: "text must be at least 1 characters.",
+        message: "Boş gonderilemez",
     }).trim(),
 })
 
@@ -40,8 +40,8 @@ const CreatePost = () => {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
+        // ✅ "values" will be type-safe and validated.
+
         console.log(values)
     }
 
@@ -60,7 +60,7 @@ const CreatePost = () => {
                                 <FormControl>
                                     <Tiptap content={field.value} onChange={field.onChange} />
                                 </FormControl>
-
+                                {/** FormMessage schema'da belirtilem hata mesajlarini gosterir */}
                                 <FormMessage />
                             </FormItem>
                         )}

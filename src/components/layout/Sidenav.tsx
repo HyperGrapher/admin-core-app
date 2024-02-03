@@ -46,13 +46,15 @@ const RouteItem = ({ currentPath, href, icon, title }: {
     return (
         <Link prefetch={false} href={href}>
             <div className={cn(
-                `flex items-center gap-6 pl-4 py-3 rounded-lg`,
+                'flex items-center gap-6 pl-4 py-3 rounded-lg',
                 {
                     'nav-active shadow-md font-medium': currentPath.startsWith(href),
                 }
             )}>
+                
                 {icon}
-                <span className='xtranslate-y-0.5'>
+
+                <span>
                     {title}
                 </span>
 
