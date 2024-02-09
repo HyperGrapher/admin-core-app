@@ -27,8 +27,6 @@ const formSchema = z.object({
     password: z.string({ required_error: "Parolanızı en 8 karakter olarak giriniz!" }).min(8, { message: "En az 8 karakter olmalı", }).max(32, { message: "En fazla 32 karakter olmalı", }),
 })
 
-// https://dribbble.com/Hypergraph/collections/1831553-Login-Screens
-
 const LoginForm = () => {
 
 
@@ -155,16 +153,7 @@ const LoginForm = () => {
                     </div>
                 </form>
             </Form>
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-backgroundx px-2 text-muted-foreground">
-                        Yada
-                    </span>
-                </div>
-            </div>
+            
 
         </div>
     )

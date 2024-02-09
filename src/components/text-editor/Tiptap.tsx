@@ -16,27 +16,10 @@ import ts from 'highlight.js/lib/languages/typescript';
 import { common, createLowlight, } from 'lowlight';
 import DefaultToolbar from './DefaultToolbar';
 
-// https://github.com/wooorm/lowlight
-
-// ! TODO https://www.youtube.com/results?search_query=react.js+rich+text+editor+with+code+highlighter
-// ! https://youtu.be/ml4USMIm594
-// ! https://tiptap.dev/docs/editor/api/nodes/code-block-lowlight
-// ! https://github.com/wooorm/lowlight
-
-/* 
-EDITORS:
-
-https://www.reddit.com/r/vuejs/comments/v38mhv/tinymce_vs_tiptap_vs_ckeditor_for_freelancing/
-https://www.reddit.com/r/reactjs/comments/107xplc/any_good_libraries_for_rich_text_editors_out_there/
-https://www.reddit.com/r/reactjs/comments/14s4mmh/which_rich_text_editor_to_use/
-*/
-
-
 const lowlight = createLowlight(common);
 lowlight.register({ latex })
 lowlight.register({ js })
 lowlight.register({ ts })
-// const tree = lowlight.highlight('js', '"use strict";')
 
 const Tiptap = ({ content, onChange }: { content: string, onChange: (richText: string) => void }) => {
 

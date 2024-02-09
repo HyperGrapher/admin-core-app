@@ -25,14 +25,7 @@ export default function Signup() {
         <div className={cn(
           "mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]",
         )}>
-          <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Bir Hesap Oluştur
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Email yada sosyal medya ile kayıt olun
-            </p>
-          </div>
+          
           <SignupForm />
 
         </div>

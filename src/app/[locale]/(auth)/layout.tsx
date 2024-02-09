@@ -27,36 +27,7 @@ export default async function RootLayout({
     return (
         <div className='relative w-full'>
 
-            <div className="absolute top-4 right-4 flex gap-4">
-                <Link
-                    href="/"
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        ""
-                    )}
-                >
-                    Anasayfa
-                </Link>
-                <Link
-                    href="/auth/login"
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        ""
-                    )}
-                >
-                    Giriş Yap
-                </Link>
-                <Link
-                    href="/auth/signup"
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        ""
-                    )}
-                >
-                    Kayit Ol
-                </Link>
-
-            </div>
+    
             <div className="flex justify-center mt-4">
                 {/* <Image priority={true} width="125" height={0} src={''} alt="logo" /> */}
             </div>

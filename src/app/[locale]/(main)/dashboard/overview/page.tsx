@@ -16,25 +16,11 @@ import { useTranslations } from 'next-intl';
 import { appRoutes } from "@/lib/constants";
 
 
-/**
- * https://youtu.be/fq7k_gVV5x8?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
- * 
- * https://www.youtube.com/watch?v=0cPCMIuDk2I&list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g&index=11
- * https://youtu.be/GSgX60KBjTU?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
- * https://youtu.be/fq7k_gVV5x8?list=PLd0hk6ONoR-HHPa_58AfdY4Ra4dnJQh1g
- * 
- * # i18n
- * https://youtu.be/pKolfZFW3gs
- * https://next-intl-docs.vercel.app/docs/routing/navigation
- * https://next-intl-docs.vercel.app/docs/environments/server-client-components#missing-context
- * https://next-intl-docs.vercel.app/docs/environments/server-client-components#option-1-passing-translations-to-client-components
- */
 
 export const metadata: Metadata = {
     title: "Admin | Home",
 }
-// https://ui.shadcn.com/docs/components/sheet
-// http://localhost:5005/dashboard
+
 export default function Overview() {
 
     const ov = useTranslations('overview');

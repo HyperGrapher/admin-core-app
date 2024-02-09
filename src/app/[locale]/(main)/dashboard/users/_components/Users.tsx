@@ -4,9 +4,7 @@ import { api } from "@/trpc/react";
 import { columns } from "../table/columns"
 import { DataTable } from "@/components/ui/data-table"
 import { useState } from 'react';
-// import { DataTable } from "@/components/ui/data-table";
 
-// https://material-kit-pro-react.devias.io/dashboard/products
 const Users = () => {
 
     const [status, setStatus] = useState(true)
