@@ -49,20 +49,15 @@ const Navbar = () => {
 
             <div className="flex items-center gap-4 text-xs opacity-0 delayed-fade-in">
 
-                {/* <Image
-                    className="logo rounded-xl border bottom-4 border-gray-300"
-                    width={45}
-                    height={45}
-                    src={session?.user?.image ?? '/default-avatar.jpg'}
-                    alt="logo"
-                /> */}
-
-                <Avatar>
-                    <AvatarImage src={session?.user.image ?? '/default-avatar.jpg'} />
-                </Avatar>
-
+                <Link href={'/settings'}>
+                    <Avatar>
+                        <AvatarImage src={session?.user.image ?? '/default-avatar.jpg'} />
+                    </Avatar>
+                </Link>
                 <div className="flex flex-col items-start gap-2">
-                    <b className='text-slate-500'>{session?.user?.username}</b>
+                    <Link href={'/settings'}>
+                        <b className='text-slate-500'>{session?.user?.username}</b>
+                    </Link>
 
                     <button
                         className='font-bold bg-red-900 text-white/80 px-2 py-1 rounded-md'
