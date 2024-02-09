@@ -19,6 +19,8 @@ import { api } from "@/trpc/react";
 import { useState, useEffect } from "react";
 import FlagTr from '@/images/flag-tr.svg'
 import FlagEn from '@/images/flag-en.svg'
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+
 // import { useRouter, usePathname } from 'next/navigation'
 // import { getServerSession, type NextAuthOptions, type DefaultSession } from "next-auth";
 
@@ -47,13 +49,17 @@ const Navbar = () => {
 
             <div className="flex items-center gap-4 text-xs opacity-0 delayed-fade-in">
 
-                <Image
+                {/* <Image
                     className="logo rounded-xl border bottom-4 border-gray-300"
                     width={45}
                     height={45}
                     src={session?.user?.image ?? '/default-avatar.jpg'}
                     alt="logo"
-                />
+                /> */}
+
+                <Avatar>
+                    <AvatarImage src={session?.user.image ?? '/default-avatar.jpg'} />
+                </Avatar>
 
                 <div className="flex flex-col items-start gap-2">
                     <b className='text-slate-500'>{session?.user?.username}</b>

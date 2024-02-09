@@ -54,10 +54,21 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
-    session: ({ session, token }) => ({
-      ...session,
-      user: { ...token },
-    }),
+    session: async ({ session, token }) => {
+      const dbUser = await db.user.findFirst({
+        where: { email: session?.user.email },
+        select: { image: true },
+      });
+
+      return {
+        ...session,
+        user: {
+          ...token,
+          image: dbUser?.image,
+          picture: dbUser?.image,
+        },
+      };
+    },
   },
   providers: [
     DiscordProvider({

@@ -36,6 +36,25 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
+    updateUserAvatar: protectedProcedure
+    .input(
+      z.object({
+        userId: z.string().min(1),
+        url: z.string().min(1),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+
+      return ctx.db.user.update({
+        where: {
+          id: input.userId
+        },
+        data: {
+          image: input?.url,
+        },
+      });
+    }),
+
   getUsers: protectedProcedure.query(({ ctx }) => {
     return ctx.db.user.findMany({
       orderBy: { createdAt: "desc" },

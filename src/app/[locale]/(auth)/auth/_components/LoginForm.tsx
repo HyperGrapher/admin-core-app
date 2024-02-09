@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Facebook, Loader, Mail, User, KeySquare as Key } from "lucide-react"
+import { Loader, Mail, User, KeySquare as Key } from "lucide-react"
 import React from 'react'
 import { useForm } from "react-hook-form"
 import * as z from "zod"
