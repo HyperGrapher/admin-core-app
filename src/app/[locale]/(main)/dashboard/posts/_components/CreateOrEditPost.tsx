@@ -1,9 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import Loader from "@/components/layout/Loader"
 import Tiptap from "@/components/text-editor/Tiptap"
 import { Button } from "@/components/ui/button"
@@ -21,9 +17,11 @@ import { useToast } from "@/components/ui/use-toast"
 import { appRoutes } from "@/lib/constants"
 import { useRouter } from '@/navigation'
 import { api } from '@/trpc/react'
-import { useSession } from "next-auth/react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-
+// burada belirtilen kosullara gore hata mesaji gosterilir
 const formSchema = z.object({
     text: z.string().min(1, { message: "Boş gonderilemez" }).trim(),
     title: z.string().min(3, { message: "En az 3 karakter olmali" }).max(20, { message: "En fazla 20 karakter olmali" }).trim(),
@@ -32,15 +30,14 @@ const formSchema = z.object({
 
 const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
-
-    const { data: session, update } = useSession();
     const { toast } = useToast();
     const utils = api.useUtils();
     const router = useRouter()
 
     const { mutate: createOrEditPost, isLoading } = api.post.createOrEdit.useMutation();
     const { data: post } = api.post.getbyId.useQuery({ id: id ?? '' }, {
-        enabled: edit // eger edit true ise fetch data
+        enabled: edit, // eger edit true ise fetch data
+        refetchOnWindowFocus: false,
     });
 
 
@@ -66,21 +63,22 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
         }, {
             async onSuccess(data) {
-                // edit durumuna gore invalidate queries
-                edit ? await utils.post.getbyId.invalidate() : await utils.post.getAll.invalidate();
+                // bir route ziyaret edilince bu data cache edilir.
+                // invalidate ile eski data gostermeden refetch yapilir.
+                await utils.post.getbyId.invalidate({ id })
+                await utils.post.getAll.invalidate()
 
                 toast({
                     variant: "success",
                     title: "Success!",
                 })
 
-                router.push(`${appRoutes.postDetail}/${edit ? id : data.id}`)
+                router.push(`${appRoutes.postDetail}/${data.id}`)
 
 
 
             },
             async onError(err) {
-                console.error(err.message)
                 toast({
                     variant: "destructive",
                     title: "Kayıt Hatası!",
@@ -95,6 +93,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
     return (
         <div className="mt-6 ml-4">
 
+            {/* Edit/Create durumuna gore yazilmasi gerekeni ata */}
             <Loader title={edit ? "Makale düzenleniyor..." : "Makale Oluşturuluyor..."} active={isLoading} />
 
             <Form {...form}>
@@ -124,7 +123,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
                     />
                     <FormField
                         control={form.control}
-                        name="published"
+                        name="published" // formSchema'da belirtilen deger
                         render={({ field }) => (
                             <FormItem className='relativex'>
                                 <FormLabel htmlFor='published' className="sr-only">Published</FormLabel>
@@ -145,6 +144,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
                                         </label>
                                     </div>
                                 </FormControl>
+                                {/** FormMessage schema'da belirtilem hata mesajlarini gosterir */}
                                 <FormMessage className='text-red-600/80 absolute top-11 left-2' />
                             </FormItem>
 
@@ -154,7 +154,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
                     <FormField
                         control={form.control}
-                        name="text"
+                        name="text"  // formSchema'da belirtilen deger
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Content</FormLabel>
@@ -167,6 +167,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
                         )}
                     />
                     <Button type="submit">
+                        {/* Edit/Create durumuna gore yazilmasi gereken */}
                         {edit ? "Edit" : "Create"}
                     </Button>
                 </form>
