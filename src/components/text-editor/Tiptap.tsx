@@ -54,7 +54,7 @@ const Tiptap = ({ content, onChange }: { content: string, onChange: (richText: s
             // Editor genel stilleri
             attributes: {
                 class: cn(
-                    "rounded-md border min-h-[250px] p-2"
+                    "rounded-md border min-h-[250px] p-2 bg-white"
                 )
             }
         },

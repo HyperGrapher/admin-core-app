@@ -19,12 +19,7 @@ const NewPostPage = () => {
     return (
         <div className="min-h-screen opacity-0 delayed-fade-in">
 
-            <PageHeader
-                title={translation("title")}
-                />
-
-            
-
+            <PageHeader title={translation("new")} />
 
             <CreatePost />
         </div>

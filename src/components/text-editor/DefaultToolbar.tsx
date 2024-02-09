@@ -22,7 +22,7 @@ const DefaultToolbar = ({ editor }: { editor: Editor | null }) => {
     return (
         <div className={cn(
             "flex",
-            "border bg-transparent rounded-md",
+            "border bg-transparent rounded-md bg-slate-200",
         )}>
 
             <Toggle
