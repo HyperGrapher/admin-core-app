@@ -1,13 +1,6 @@
-import CreatePost from "../_components/CreatePost"
-import { cn } from "@/lib/utils";
-import { type Metadata } from "next";
-import { api } from "@/trpc/server";
-import { Mail, PlusIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import PageHeader from "@/components/layout/PageHeader";
-import { Link } from "@/navigation";
 import { useTranslations } from 'next-intl';
-import { LinkButton } from "@/components/ui/link-button";
+import CreatePost from "../_components/CreatePost";
 
 
 

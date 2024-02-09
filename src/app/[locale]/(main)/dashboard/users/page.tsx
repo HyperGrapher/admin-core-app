@@ -14,10 +14,10 @@ import { LinkButton } from "@/components/ui/link-button";
 
 
 export const metadata: Metadata = {
-    title: "Admin | Home",
+    title: "Admin | Users",
 }
 
-// http://localhost:5005/dashboard
+// http://localhost:5005/dashboard/users
 export default function UsersPage() {
 
     const translation = useTranslations('user-page');

@@ -13,7 +13,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Admin App",
-  description: "Admin app with Next.js",
+  description: "Admin app",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -31,7 +31,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`font-sans ${inter.variable}`}>
+      <body className={`font-sans ${inter.variable} bg-slate-100`}>
         <TRPCReactProvider session={session} headers={headers()}>{children}</TRPCReactProvider>
         <Toaster />
       </body>

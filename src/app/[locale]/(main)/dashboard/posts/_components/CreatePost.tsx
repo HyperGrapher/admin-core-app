@@ -4,7 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import Loader from "@/components/layout/Loader"
+import Tiptap from "@/components/text-editor/Tiptap"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
     Form,
     FormControl,
@@ -14,17 +17,11 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import Tiptap from "@/components/text-editor/Tiptap"
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { useToast } from "@/components/ui/use-toast"
-import { UploadButton } from "@/lib/uploadthing"
-import { cn } from "@/lib/utils"
+import { appRoutes } from "@/lib/constants"
+import { useRouter } from '@/navigation'
 import { api } from '@/trpc/react'
 import { useSession } from "next-auth/react"
-import { Checkbox } from "@/components/ui/checkbox"
-import Loader from "@/components/layout/Loader"
-import { useRouter } from '@/navigation';
-import { appRoutes } from "@/lib/constants"
 
 
 const formSchema = z.object({
@@ -57,8 +54,6 @@ const CreatePost = () => {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         // ✅ "values" will be type-safe and validated.
-
-        console.log(values)
 
         createPost({
             title: values.title,

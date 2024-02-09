@@ -10,6 +10,7 @@ import PageHeader from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
 import { appRoutes } from "@/lib/constants";
+import Posts from "./_components/Posts";
 
 export const metadata: Metadata = {
     title: "Admin | Makaleler",
@@ -38,7 +39,7 @@ const PostPage = () => {
                     </LinkButton>
                 )} />
 
-
+            <Posts />
 
 
         </div>

@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
-
 export const postRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
@@ -26,10 +25,27 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
-  getLatest: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.post.findFirst({
-      orderBy: { createdAt: "desc" },
-      where: { user: { id: ctx.session.user.id } },
-    });
-  }),
+  getbyId: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.post.findFirst({
+        where: { id: Number(input.id) },
+      });
+    }),
+  getAll: protectedProcedure
+    .input(
+      z.object({
+        published: z.boolean(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.post.findMany({
+        orderBy: { createdAt: "desc" },
+        where: { published: input.published },
+      });
+    }),
 });
