@@ -48,6 +48,12 @@ pre {
 
 }
 
+.no-code-bg pre {
+  background: transparent;
+  padding: 0;
+
+}
+
 pre>code {
   background: none;
   color: inherit;

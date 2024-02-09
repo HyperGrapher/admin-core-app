@@ -1,5 +1,6 @@
 "use client"
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { api } from "@/trpc/react";
 import { columns } from "../table/columns"
 import { DataTable } from "@/components/ui/data-table"
@@ -8,12 +9,18 @@ import Loader from "@/components/layout/Loader";
 
 const Users = () => {
 
-    const { data: users, isFetching } = api.user.getUsers.useQuery();
+    // isFetching: browser'da focus degisip tekrar tab'a gelindiginde yeniden fetch yapar. (refetchOnWindowFocus)
+    // isLoading: sadece initial data fetching sirasinda true olur
+    const { data: users, isFetching, isLoading } = api.user.getUsers.useQuery(undefined, {
+        refetchInterval: 0, // ms olarak refetch araligi, default olarak kapali
+        refetchOnWindowFocus: true, 
+    });
+
 
     return (
         <div className="py-10 max-w-5xl w-full">
 
-            <Loader title="Loading ..." active={isFetching} />
+            <Loader title="Loading ..." active={isLoading} />
             {users && <DataTable columns={columns} data={users} visibility={{}} />}
         </div>
 

@@ -30,7 +30,7 @@ const formSchema = z.object({
     published: z.boolean().default(false),
 })
 
-const CreatePost = () => {
+const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
 
     const { data: session, update } = useSession();
@@ -38,38 +38,43 @@ const CreatePost = () => {
     const utils = api.useUtils();
     const router = useRouter()
 
+    const { mutate: createOrEditPost, isLoading } = api.post.createOrEdit.useMutation();
+    const { data: post } = api.post.getbyId.useQuery({ id: id ?? '' }, {
+        enabled: edit // eger edit true ise fetch data
+    });
 
-    const { mutate: createPost, isLoading } = api.post.create.useMutation();
 
 
     const form = useForm<z.infer<typeof formSchema>>({
         mode: "onChange",
         resolver: zodResolver(formSchema),
         defaultValues: {
-            text: "",
-            title: "",
-            published: false,
+            text: post?.text ?? "",
+            title: post?.title ?? "",
+            published: post?.published ?? false,
         },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         // ✅ "values" will be type-safe and validated.
 
-        createPost({
+        createOrEditPost({
+            id: edit ? Number(id) : undefined,
             title: values.title,
             text: values.text,
             published: values.published,
 
         }, {
-            async onSuccess(_data) {
-                await utils.post.getLatest.invalidate();
+            async onSuccess(data) {
+                // edit durumuna gore invalidate queries
+                edit ? await utils.post.getbyId.invalidate() : await utils.post.getAll.invalidate();
 
                 toast({
                     variant: "success",
-                    title: "Post Created!",
+                    title: "Success!",
                 })
 
-                router.push(appRoutes.posts)
+                router.push(`${appRoutes.postDetail}/${edit ? id : data.id}`)
 
 
 
@@ -90,8 +95,7 @@ const CreatePost = () => {
     return (
         <div className="mt-6 ml-4">
 
-
-            <Loader title="Makale Oluşturuluyor..." active={isLoading} />
+            <Loader title={edit ? "Makale düzenleniyor..." : "Makale Oluşturuluyor..."} active={isLoading} />
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-lg">
@@ -153,7 +157,7 @@ const CreatePost = () => {
                         name="text"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Post Content</FormLabel>
+                                <FormLabel>Content</FormLabel>
                                 <FormControl>
                                     <Tiptap content={field.value} onChange={field.onChange} />
                                 </FormControl>
@@ -162,7 +166,9 @@ const CreatePost = () => {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">
+                        {edit ? "Edit" : "Create"}
+                    </Button>
                 </form>
             </Form>
 
@@ -171,4 +177,4 @@ const CreatePost = () => {
     )
 }
 
-export default CreatePost
+export default CreateOrEditPost

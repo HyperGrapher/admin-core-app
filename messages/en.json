@@ -17,7 +17,9 @@
     },
     "post-page": {
         "title": "Posts",
-        "new": "New Post"
+        "new": "New Post",
+        "edit": "Edit Post",
+        "detail": "Post Detail"
        
     },
     "user-page": {

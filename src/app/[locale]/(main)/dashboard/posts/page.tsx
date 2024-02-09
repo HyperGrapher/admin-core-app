@@ -22,7 +22,7 @@ const PostPage = () => {
 
 
     return (
-        <div className="min-h-screen opacity-0 delayed-fade-in">
+        <div className="opacity-0 delayed-fade-in">
 
 
             <PageHeader

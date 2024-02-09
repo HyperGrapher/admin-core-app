@@ -3,9 +3,10 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 
 export const postRouter = createTRPCRouter({
-  create: protectedProcedure
+  createOrEdit: protectedProcedure
     .input(
       z.object({
+        id: z.number().optional(),
         title: z.string().min(1),
         text: z.string().min(1),
         published: z.boolean(),
@@ -15,8 +16,14 @@ export const postRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      return ctx.db.post.create({
-        data: {
+      return ctx.db.post.upsert({
+        where: { id: input.id},
+        update: {
+          title: input.title,
+          text: input.text,
+          published: input.published,
+        },
+        create: {
           title: input.title,
           text: input.text,
           published: input.published,

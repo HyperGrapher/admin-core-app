@@ -12,7 +12,10 @@
     },
     "post-page": {
         "title": "Makaleler",
-        "new": "Makale Ekle"
+        "new": "Makale Ekle",
+        "edit": "Makaleyi Düzenle",
+        "detail": "Makale Detayı"
+
     },
     "user-page": {
         "title": "Kullanicilar"

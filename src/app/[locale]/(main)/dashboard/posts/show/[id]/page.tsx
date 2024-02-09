@@ -1,37 +1,32 @@
-"use client"
 import { api } from "@/trpc/react";
 import { useState } from 'react';
 import Loader from "@/components/layout/Loader";
-import js from 'highlight.js/lib/languages/javascript';
-import latex from 'highlight.js/lib/languages/latex';
-import ts from 'highlight.js/lib/languages/typescript';
-import { common, createLowlight, } from 'lowlight';
+import RenderedContent from "@/components/text-editor/RenderContent";
+import { cn } from "@/lib/utils"
+import { type Metadata } from "next";
+import { redirect } from '@/navigation';
+import { Mail, PlusIcon } from "lucide-react"
+import { Link } from "@/navigation";
+import { useTranslations } from 'next-intl';
+import PageHeader from "@/components/layout/PageHeader";
+import { Button } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/link-button";
+import { appRoutes } from "@/lib/constants";
+import DetailContent from "./_components/DetailContent";
 
-const lowlight = createLowlight(common);
-lowlight.register({ latex })
-lowlight.register({ js })
-lowlight.register({ ts })
-lowlight.highlightAuto("ts")
 
 const PostDetail = ({ params }: { params: { id: string } }) => {
 
-    const { data: post, isFetching } = api.post.getbyId.useQuery({ id: params.id });
+    const postsTranslation = useTranslations('post-page');
 
 
     return (
-        <div>
+        <div className={cn(
+            "opacity-0 delayed-fade-in",
+            "",
+        )}>
 
-
-            <div className="a">
-                {post?.title}
-            </div>
-            <div className="a" dangerouslySetInnerHTML={{ __html: post?.text ?? '' }}>
-            </div>
-
-        <div className="mt-4">
-            {post?.text ?? '' }
-        </div>
-
+            <DetailContent id={params.id} />
 
         </div>
     )
