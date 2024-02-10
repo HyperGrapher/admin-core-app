@@ -9,9 +9,9 @@ import Loader from "@/components/layout/Loader";
 
 function Posts() {
 
-    const [status, setStatus] = useState("published")
+    const [status, setStatus] = useState("all") // show all by default
 
-    const { data, isLoading } = api.post.getAll.useQuery({ published: status === 'published' });
+    const { data, isLoading } = api.post.getAll.useQuery({ status });
 
 
     return (

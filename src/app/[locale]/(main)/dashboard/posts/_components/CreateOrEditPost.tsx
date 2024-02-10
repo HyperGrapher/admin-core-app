@@ -21,10 +21,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-// burada belirtilen kosullara gore hata mesaji gosterilir
+// burada belirtilen kosullara gore input'larda hata mesaji gosterilir
 const formSchema = z.object({
     text: z.string().min(1, { message: "Boş gonderilemez" }).trim(),
-    title: z.string().min(3, { message: "En az 3 karakter olmali" }).max(20, { message: "En fazla 20 karakter olmali" }).trim(),
+    title: z.string().min(3, { message: "En az 3 karakter olmali" }).max(100, { message: "En fazla 100 karakter olmali" }).trim(),
     published: z.boolean().default(false),
 })
 
@@ -41,10 +41,10 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
     });
 
 
-
     const form = useForm<z.infer<typeof formSchema>>({
         mode: "onChange",
         resolver: zodResolver(formSchema),
+        // edit yada yeni post durumuna gore input degerlerini olusturur
         defaultValues: {
             text: post?.text ?? "",
             title: post?.title ?? "",
@@ -91,7 +91,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
 
     return (
-        <div className="mt-6 ml-4 ">
+        <div className="mt-6 ml-4 pb-36">
 
             {/* Edit/Create durumuna gore yazilmasi gerekeni ata */}
             <Loader title={edit ? "Makale düzenleniyor..." : "Makale Oluşturuluyor..."} active={isLoading} />

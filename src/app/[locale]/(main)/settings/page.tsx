@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { useToast } from "@/components/ui/use-toast"
 import { UploadButton } from "@/lib/uploadthing"
@@ -56,7 +57,7 @@ const SettingsPage = () => {
                 <div className="flex flex-col items-center gap-4">
 
                     <h2 className="font-bold text-xl text-slate-500">
-                        Avatar Yukleyin
+                        Profil Fotosu Yükleyin
                     </h2>
 
                     <Avatar className='scale-150 my-4'>
@@ -80,14 +81,14 @@ const SettingsPage = () => {
                         }}
                         content={{
                             button({ ready }) {
-                                if (ready) return <div>Avatar Yükle</div>;
+                                if (ready) return <div>Foto Yükle</div>;
 
                                 return "Hazırlanıyor...";
                             },
                             allowedContent({ ready, fileTypes, isUploading }) {
-                                if (!ready) return "Kontrol ediliyor";
-                                if (isUploading) return "Yükleniyor..";
-                                return `En fazla 4mb ${fileTypes.join(", ")}`;
+                                if (!ready) return "Bekleyiniz..";
+                                if (isUploading) return "Foto Yükleniyor..";
+                                return ``;
                             },
                         }}
                     />

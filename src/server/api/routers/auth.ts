@@ -36,13 +36,28 @@ export const authRouter = createTRPCRouter({
         });
 
       if (password !== password2)
+        // Server tarafinda yanlis bir sey varsa throwing TRPCError daha avantajli
+        // frontend'de mesaji toast olarak gosterebilirsin.
+        // bir middleware ile TRPC error'lari bir dosya/DB'ye log'layabilirsin
         throw new TRPCError({
           message: "Şifre uyuşmuyor",
           code: "CONFLICT",
           cause: "password conflict",
         });
 
-      const emailVerifyCode = crypto.randomBytes(8).toString("hex");
+      /* 
+      eger gerekli olursa bu sekilde bir random string olusturabiirsin
+      verifyCode1: 654bcc6f28e885d2f8b28e70df9a6098
+      verifyCode2: aXvSHiGM4se5R9yeeCDSdg
+    */
+      const verifyCode1 = crypto.randomBytes(16).toString("hex"); // daha fazla char uretir 
+      const verifyCode2 = crypto
+        .randomBytes(16)
+        .toString("base64url")
+        .replace(/^a-zA-Z0-9 ]/g, ""); // replaces special chars with alphanumeric
+
+      // server tarafi oldugu icin prints on terminal not browser
+      console.table({ verifyCode1, verifyCode2 });
 
       try {
         const salt = await bcrypt.genSalt(10);
@@ -62,7 +77,6 @@ export const authRouter = createTRPCRouter({
       }
     }),
 
-  // TODO:  Cleanup and Complete registration form provider signup
   createProviderUser: protectedProcedure
     .input(
       z.object({
@@ -95,11 +109,8 @@ export const authRouter = createTRPCRouter({
           data: {
             email: email,
             password: "provider-auth",
-
           },
         });
-
-        
       } catch (error) {
         console.log(error);
       }
@@ -112,5 +123,4 @@ export const authRouter = createTRPCRouter({
 
       return createdUser;
     }),
-
 });

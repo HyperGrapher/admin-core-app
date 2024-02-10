@@ -1,12 +1,6 @@
 "use client"
 
 import { cn } from '@/lib/utils';
-import BulletList from '@tiptap/extension-bullet-list';
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import Document from '@tiptap/extension-document';
-import Heading from '@tiptap/extension-heading';
-import OrderedList from '@tiptap/extension-ordered-list';
-import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import { EditorContent, useEditor } from '@tiptap/react';
 import TiptapKit from '@tiptap/starter-kit';
@@ -15,6 +9,13 @@ import latex from 'highlight.js/lib/languages/latex';
 import ts from 'highlight.js/lib/languages/typescript';
 import { common, createLowlight, } from 'lowlight';
 import DefaultToolbar from './DefaultToolbar';
+import BulletList from '@tiptap/extension-bullet-list';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import Document from '@tiptap/extension-document';
+import Heading from '@tiptap/extension-heading';
+import OrderedList from '@tiptap/extension-ordered-list';
+import Paragraph from '@tiptap/extension-paragraph';
+import Strike from '@tiptap/extension-strike';
 
 const lowlight = createLowlight(common);
 lowlight.register({ latex })

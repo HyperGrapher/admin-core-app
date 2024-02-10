@@ -17,8 +17,8 @@ const renderContentWithCodeHighlighting = (content: string) => {
                 return (
                     <SyntaxHighlighter
                         key={index}
-                        language="javascript" // Define the language for code highlighting
-                        style={oneDark} // Choose the desired style
+                        language="javascript" // language for code highlighting
+                        style={oneDark} // desired style
                     >
                         {node?.children?.[0] && node?.children[0]?.data}
                     </SyntaxHighlighter>

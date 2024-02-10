@@ -1,21 +1,19 @@
 "use client"
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { type Dispatch, type SetStateAction, useState, useTransition } from 'react'
-import { api } from "@/trpc/react";
 import {
-    type ColumnDef,
-    type VisibilityState,
-    type ColumnFiltersState,
-    type SortingState,
     flexRender,
     getCoreRowModel,
-    useReactTable,
     getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
-
-} from "@tanstack/react-table"
+    useReactTable,
+    type ColumnDef,
+    type ColumnFiltersState,
+    type SortingState,
+    type VisibilityState,
+} from "@tanstack/react-table";
+import { useState, type Dispatch, type SetStateAction } from 'react';
 
 import {
     Table,
@@ -24,23 +22,21 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
-    DropdownMenuTrigger,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
-} from "@/components/ui/dropdown-menu"
-import { ArrowUpDown, MoreHorizontal, Mail, User, KeySquare as Key, SearchIcon } from "lucide-react"
-import { TbSelector } from "react-icons/tb";
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import { Input } from '@/components/ui/input';
+import { SearchIcon } from "lucide-react";
+import { TbSelector } from "react-icons/tb";
 
 
 const TextSearchFilter = ({ columnFilters, setColumnFilters }: {
@@ -64,7 +60,7 @@ const TextSearchFilter = ({ columnFilters, setColumnFilters }: {
                 value={value}
                 onChange={(e) => onTextChange("title", e.target.value)}
                 type="text"
-                placeholder="ara" />
+                placeholder="Başlıklarda Ara" />
         </>
     )
 }
@@ -106,7 +102,7 @@ export function DataTable<TData, TValue>({
         onColumnVisibilityChange: setColumnVisibility,
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(), // new
+        getFilteredRowModel: getFilteredRowModel(), 
         state: {
             sorting,
             columnFilters,
@@ -124,13 +120,13 @@ export function DataTable<TData, TValue>({
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline">Filtrele
                             <TbSelector className="ml-2 h-4 w-4" />
-
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
                         {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel> */}
                         <DropdownMenuSeparator />
                         <DropdownMenuRadioGroup value={status} onValueChange={onStatusChange}>
+                            <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
                             <DropdownMenuRadioItem value="draft">Draft</DropdownMenuRadioItem>
                             <DropdownMenuRadioItem value="published">Published</DropdownMenuRadioItem>
                         </DropdownMenuRadioGroup>
