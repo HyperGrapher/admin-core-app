@@ -8,13 +8,13 @@ export const metadata: Metadata = {
 }
 
 
-const NewPostPage = ({ params }: { params: { id: string } }) => {
+const EditPostPage = ({ params }: { params: { id: string } }) => {
 
     const translation = useTranslations('post-page');
 
 
     return (
-        <div className="opacity-0 delayed-fade-in">
+        <div className="opacity-0 delayed-fade-in ">
 
             <PageHeader title={translation("edit")} />
 
@@ -23,4 +23,4 @@ const NewPostPage = ({ params }: { params: { id: string } }) => {
     )
 }
 
-export default NewPostPage
+export default EditPostPage

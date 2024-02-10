@@ -13,7 +13,7 @@ const Users = () => {
     // isLoading: sadece initial data fetching sirasinda true olur
     const { data: users, isFetching, isLoading } = api.user.getUsers.useQuery(undefined, {
         refetchInterval: 0, // ms olarak refetch araligi, default olarak kapali
-        refetchOnWindowFocus: true, 
+        refetchOnWindowFocus: true,
     });
 
 
@@ -21,7 +21,11 @@ const Users = () => {
         <div className="py-10 max-w-5xl w-full">
 
             <Loader title="Loading ..." active={isLoading} />
-            {users && <DataTable columns={columns} data={users} visibility={{}} />}
+            <div className="bg-white rounded-lg p-3">
+                {/* user datatable tekrar kullanilabilir component */}
+                {users && <DataTable columns={columns} data={users} visibility={{}} />}
+            </div>
+
         </div>
 
     )

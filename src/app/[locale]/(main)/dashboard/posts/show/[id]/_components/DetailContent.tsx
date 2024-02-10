@@ -19,10 +19,13 @@ const DetailContent = ({ id }: { id: string }) => {
 
     const router = useRouter()
 
-    const { data: post, isFetching } = api.post.getbyId.useQuery({ id });
+    const { data: post, isLoading } = api.post.getbyId.useQuery({ id });
 
     return (
         <div>
+
+            <Loader title={"Yukleniyor..."} active={isLoading} />
+
 
             <div className="flex justify-between items-center">
                 <h1 className="font-bold text-slate-500 text-3xl">
@@ -37,9 +40,11 @@ const DetailContent = ({ id }: { id: string }) => {
                 </Button>
             </div>
 
-            <div className="mt-8 bg-white rounded-lg p-6 no-code-bg">
-                <RenderedContent tiptapHTMLContent={post?.text ?? '<p><p>'} />
-            </div>
+            {post && (
+                <div className="mt-8 bg-white rounded-lg p-6 no-code-bg">
+                    <RenderedContent tiptapHTMLContent={post?.text ?? '<p><p>'} />
+                </div>
+            )}
 
         </div>
     )

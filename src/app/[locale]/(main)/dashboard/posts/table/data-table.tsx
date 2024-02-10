@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { type Dispatch, type SetStateAction, useState } from 'react'
+import { type Dispatch, type SetStateAction, useState, useTransition } from 'react'
 import { api } from "@/trpc/react";
 import {
     type ColumnDef,
@@ -38,34 +38,60 @@ import {
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal, Mail, User, KeySquare as Key, SearchIcon } from "lucide-react"
 import { TbSelector } from "react-icons/tb";
+import { Input } from '@/components/ui/input';
+
+
+const TextSearchFilter = ({ columnFilters, setColumnFilters }: {
+    columnFilters: ColumnFiltersState,
+    setColumnFilters: Dispatch<SetStateAction<ColumnFiltersState>>
+}) => {
+
+    const value = (columnFilters.find(x => x.id === "title")?.value ?? "") as string;
+
+    const onTextChange = (id: string, value: string) => setColumnFilters(
+        x => x.filter(val => val.id !== id).concat({ id, value })
+    )
+
+    return (
+        <>
+
+            <SearchIcon className='absolute left-3 w-4 h-4 top-0 bottom-0 my-auto text-slate-400' />
+            <Input
+                className='pl-8'
+                id="search"
+                value={value}
+                onChange={(e) => onTextChange("title", e.target.value)}
+                type="text"
+                placeholder="ara" />
+        </>
+    )
+}
 
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[],
-    onDatabaseFilterChange: Dispatch<SetStateAction<string>>
+    onStatusFilterChange: Dispatch<SetStateAction<string>>,
+    status: string,
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
-    onDatabaseFilterChange
+    onStatusFilterChange,
+    status
 }: DataTableProps<TData, TValue>) {
 
-    const [status, setStatus] = useState("published")
+    const onStatusChange = (val: string) => {
 
-    const onDbFilterChange = (val: string) => {
+        onStatusFilterChange(val)
 
-        setStatus(val)
-        onDatabaseFilterChange(val)
     }
 
     const [sorting, setSorting] = useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-        []
-    )
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([{ id: "title", value: "" }])
     const [columnVisibility, setColumnVisibility] =
         useState<VisibilityState>({
             message: false,
@@ -80,6 +106,7 @@ export function DataTable<TData, TValue>({
         onColumnVisibilityChange: setColumnVisibility,
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(), // new
         state: {
             sorting,
             columnFilters,
@@ -90,7 +117,7 @@ export function DataTable<TData, TValue>({
     return (
         <div className="xrounded-md xborder w-full">
 
-            <section className="flex items-center space-x-1 justify-start mb-1">
+            <section className="flex items-center space-x-1 justify-start mb-2">
 
 
                 <DropdownMenu>
@@ -103,7 +130,7 @@ export function DataTable<TData, TValue>({
                     <DropdownMenuContent className="w-56">
                         {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel> */}
                         <DropdownMenuSeparator />
-                        <DropdownMenuRadioGroup value={status} onValueChange={onDbFilterChange}>
+                        <DropdownMenuRadioGroup value={status} onValueChange={onStatusChange}>
                             <DropdownMenuRadioItem value="draft">Draft</DropdownMenuRadioItem>
                             <DropdownMenuRadioItem value="published">Published</DropdownMenuRadioItem>
                         </DropdownMenuRadioGroup>
@@ -141,6 +168,13 @@ export function DataTable<TData, TValue>({
                             })}
                     </DropdownMenuContent>
                 </DropdownMenu>
+
+                <div className="px-2 relative">
+                    <TextSearchFilter
+                        columnFilters={columnFilters}
+                        setColumnFilters={setColumnFilters}
+                    />
+                </div>
 
             </section>
             <div className="rounded-md border w-full">
@@ -188,7 +222,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            
+
 
         </div>
     )

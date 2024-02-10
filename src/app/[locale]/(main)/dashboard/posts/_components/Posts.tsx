@@ -11,13 +11,25 @@ function Posts() {
 
     const [status, setStatus] = useState("published")
 
-    const { data, isFetching } = api.post.getAll.useQuery({ published: status === 'published' });
+    const { data, isLoading } = api.post.getAll.useQuery({ published: status === 'published' });
 
 
     return (
         <div className="py-10 max-w-5xl w-full">
-            <Loader title="Loading ..." active={isFetching} />
-            {data && <DataTable columns={columns} data={data} onDatabaseFilterChange={setStatus} />}
+            <Loader title="Loading ..." active={isLoading} />
+
+            <div className="bg-white rounded-lg p-3">
+                {/* post datatable ozellestirilmis bir component (user datatable is generic) */}
+
+                {data && <DataTable
+                    columns={columns}
+                    data={data}
+                    status={status}
+                    onStatusFilterChange={setStatus}
+                />
+                }
+
+            </div>
 
         </div>
     )

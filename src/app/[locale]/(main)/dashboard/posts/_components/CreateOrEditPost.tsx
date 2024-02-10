@@ -91,7 +91,7 @@ const CreateOrEditPost = ({ edit, id }: { edit?: boolean, id?: string }) => {
 
 
     return (
-        <div className="mt-6 ml-4">
+        <div className="mt-6 ml-4 ">
 
             {/* Edit/Create durumuna gore yazilmasi gerekeni ata */}
             <Loader title={edit ? "Makale düzenleniyor..." : "Makale Oluşturuluyor..."} active={isLoading} />

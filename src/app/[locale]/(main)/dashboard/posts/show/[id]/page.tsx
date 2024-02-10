@@ -23,7 +23,7 @@ const PostDetail = ({ params }: { params: { id: string } }) => {
     return (
         <div className={cn(
             "opacity-0 delayed-fade-in",
-            "",
+            "pr-4",
         )}>
 
             <DetailContent id={params.id} />
